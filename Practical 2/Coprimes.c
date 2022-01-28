@@ -21,7 +21,7 @@ void main()
     }
     //now a<b always
     
-    for(int i = a; i<=b; i++)
+    for(int i = a; i<=b-2; i++)
     {
         if(isPrime(i))
             if(isPrime(i+2))
