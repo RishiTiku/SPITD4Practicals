@@ -12,8 +12,7 @@ void main()
         if(dec == 0)
             break;
         rem = dec%2;
-        if(rem==1)
-            bin = (float) bin + pow(10,i);
+        bin = (float) bin + rem*pow(10,i);
         dec = (int) dec/2;
         
     }
