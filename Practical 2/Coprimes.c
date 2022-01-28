@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <math.h>
 
 int isPrime(int);
 
@@ -7,6 +8,10 @@ void main()
     int a, b;
     printf("Enter 2 numbers for ranges. \n");
     scanf("%d %d",&a,&b);
+    if(isPrime(7))
+        printf("It is prime.\n");
+    else 
+        printf("No.");
 
     if(a==b)
     {    
@@ -27,12 +32,17 @@ void main()
             if(isPrime(i+2))
                 printf("(%d, %d) are coprimes\n",i,i+2);
     }
+
 }
 
 int isPrime(int a)
 {
-    for(int i = 2; i<a; i++)
+    int root = (int) sqrt(a);
+    //printf("%d \n", root);
+    for(int i = 2; i<=root; i++)
         if(a%i == 0)
+        {  
             return 0;
+        }
     return 1;
 }
