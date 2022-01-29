@@ -6,11 +6,11 @@ int main()
     printf("Enter 2 numbers.\n");
     scanf("%d %d",&a, &b);
     if(a>b)
-        i = a;
+        i = (int) a/2;
     else if(a==b)
         i = -1;
     else
-        i = b;
+        i = (int) b/2;
 
     for(;i>=1;i--)
     {
