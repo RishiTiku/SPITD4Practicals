@@ -8,13 +8,10 @@ void main()
     printf("Enter number to be checked for Kaprekar.\n");
     scanf("%d",&n);
     sqn = sqnc = n*n;
-    while(1)
+    while(sqnc>0)
     {
-        if( (int) sqnc/10 >= 0) 
-            ctr++;
-        sqnc = sqnc/10;
-        if(sqnc==0)
-            break;
+        sqnc = sqnc/10; 
+        ctr++;
     }
     if(ctr%2==0)
         r = ctr/2;
