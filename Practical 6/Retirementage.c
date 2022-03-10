@@ -3,7 +3,7 @@
 #define sf scanf
 
 void Sort(int A[][2], int n);
-
+void print(int A[][2], int n, char name);
 void main()
 {
     int cur, n;
@@ -19,7 +19,7 @@ void main()
         sf("%d", &A[i][0]);
         pf("Enter Employee Age.\n");
         sf("%d", &A[i][1]);
-        A[i][1] = cur + 65 - A[i][1];     
+        A[i][1] = cur + 65 - A[i][1];//retirement year here  
     }
     Sort(A, n);
     for(int i = 0; i<n;)
@@ -30,6 +30,17 @@ void main()
                 pf("%d ", A[i][0]);
             }while(i<n && A[i]==A[++i]);
             pf("\n");
+    }
+}
+
+void print(int A[][2], int n, char name)
+{
+    printf("\n[+] Array %c[%d][%d]:\n",name , m, n);
+    for(int i = 0; i<m; i++)
+    {
+        for(int j = 0; j<2; j++)
+            printf("%d\t", A[i][j]);
+        printf("\n");
     }
 }
 
@@ -52,5 +63,6 @@ void Sort(int A[][2], int n)
             A[i][k] = A[pos][k];
             A[pos][k] = temp;
         }    
-    }    
+    }
+    print(A, n, 'A');    
 }
