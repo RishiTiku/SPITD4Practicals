@@ -26,7 +26,7 @@ void main()
     int j = 0;
     for(int i = 0; i<n; i++)
     {
-            pf("Retirement Year = %d. \n Employee IDs = ", cur + A[i][1]);
+            pf("Retirement Year = %d. \n Employee IDs = ", A[i][1]);
             j = i;
             do{
                 pf("%d ",A[j][0]);
@@ -50,24 +50,27 @@ void print(int A[][2], int n, char name)
 void Sort(int A[][2], int n)
 {
     print(A, n, 'A');
-    int min = A[0][1], pos = 0, temp = 0;
+    int min, pos = 0, temp = 0;
     for(int i = 0; i<n; i++)//Loop to sort the Matrix based on year
     {
+        min = A[i][1]; 
         for(int j = i; j<n; j++)//Loop to calculate next min value
         {
-            if(A[j][1]<min)
+            if(A[j][1]<=min)
             {
                 min = A[j][1];
                 pos = j;
             }
         }
         //Swap(A, k, pos);
+        pf("Step %d\n", i);
         for(int k = 0; k<2;k++)//Loop to swap Variables
         {
             temp = A[i][k];
             A[i][k] = A[pos][k];
             A[pos][k] = temp;
-        }    
+        }
+        print(A, n, 'A');
     }
     print(A, n, 'A');    
-}
+} 
