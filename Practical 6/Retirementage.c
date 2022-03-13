@@ -22,41 +22,46 @@ void main()
         A[i][1] = cur + 65 - A[i][1];//retirement year here  
     }
     Sort(A, n);
-    for(int i = 0; i<n;)
+    //Print List
+    int j = 0;
+    for(int i = 0; i<n; i++)
     {
-            pf("Retirement Year = %d. \n Employee IDs = ", A[i][1]);
-            do
-            {
-                pf("%d ", A[i][0]);
-            }while(i<n && A[i]==A[++i]);
+            pf("Retirement Year = %d. \n Employee IDs = ", cur + A[i][1]);
+            j = i;
+            do{
+                pf("%d ",A[j][0]);
+            }while(A[j][1]==A[++j][1]);
+            i = j-1;
             pf("\n");
     }
 }
 
 void print(int A[][2], int n, char name)
 {
-    printf("\n[+] Array %c[%d][%d]:\n",name , m, n);
-    for(int i = 0; i<m; i++)
+    pf("\n[+] Array %c[%d][%d]:\n",name , n, 2);
+    for(int i = 0; i<n; i++)
     {
         for(int j = 0; j<2; j++)
-            printf("%d\t", A[i][j]);
-        printf("\n");
+            pf("%d\t", A[i][j]);
+        pf("\n");
     }
 }
 
 void Sort(int A[][2], int n)
 {
+    print(A, n, 'A');
     int min = A[0][1], pos = 0, temp = 0;
     for(int i = 0; i<n; i++)//Loop to sort the Matrix based on year
     {
-        for(int j = 0; j<n; j++)//Loop to calculate next min value
+        for(int j = i; j<n; j++)//Loop to calculate next min value
         {
-            if(A[j][1]<=min)
+            if(A[j][1]<min)
             {
                 min = A[j][1];
                 pos = j;
             }
         }
+        //Swap(A, k, pos);
         for(int k = 0; k<2;k++)//Loop to swap Variables
         {
             temp = A[i][k];
