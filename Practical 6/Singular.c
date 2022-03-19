@@ -2,12 +2,12 @@
 #define sf scanf
 #define pf printf
 
-int Det(int A[4][4], int n);
-void print(int A[4][4], int n);
+int Det(int A[10][10], int n);
+void print(int A[10][10], int n);
 
 void main()
 {
-    int n, A[4][4], det;
+    int n, A[10][10], det;
     pf("Enter order N of NxN Matrix.\n");
     sf("%d", &n);
     pf("Enter the Matrix.\n");
@@ -25,7 +25,7 @@ void main()
     return;
 }
 
-void print(int A[4][4], int n)
+void print(int A[10][10], int n)
 {
     pf("\n");
     for(int i = 0; i<n; i++)
@@ -35,40 +35,30 @@ void print(int A[4][4], int n)
         pf("\n");
     }
 }
-int Det(int A[4][4], int n)
+int Det(int A[10][10], int n)
 {
-    int det, sub[4][4], sign, sum = 0; //det = 2x2, sub stores sub array after r,c deletion, sum stores the det sum
-    if(n == 1)
+    int det, sub[10][10], sign, sum = 0;
+    if(n == 1)//A[1x1] is itself a determinant
         sum = A[0][0];
-    else if(n == 2)
+    else if(n == 2)//Standard Determinant for array[2x2]
         sum = (A[0][0] * A[1][1]) - (A[1][0] * A[0][1]);
-    else
+    else//n>2 Row/Coloumn Deletion Method 
     {
         for(int o = 0; o<n; o++)
         {
             sign = (o%2==0)?1:-1;
-            for(int p = 0, a = 1; p<n-1; p++, a++)
+            for(int p = 0, a = 1; p<n-1; p++, a++)//p,q take positions in sub-array, a,b take positions in main array
             {
                 for(int q = 0, b = 0; q<n-1; q++, b++)
                 {
                     if(q == o)
                         b++;
-                    sub[p][q] = A[a][b];
+                    sub[p][q] = A[a][b];//Creates a smaller sub-array
                 }
             }
-            det = Det(sub, n-1);
+            det = Det(sub, n-1);//Finds Determinant of sub-array
             sum+= A[0][o] * sign * det;
         }
     }
-    return sum;
+    return sum;//Return the final determinant
 } 
-
-/*int det = 0;
-    if(n == 1)
-        return A[0][0];
-    else if(n == 2)
-    {
-        det = (A[0][0]*A[1][1])-(A[0][1]*A[1][0]);
-    }
-    else if(n==3)
-    {*/

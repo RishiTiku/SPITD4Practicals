@@ -3,7 +3,7 @@
 #define sf scanf
 
 void Sort(int A[][2], int n);
-void print(int A[][2], int n, char name);
+
 void main()
 {
     int cur, n;
@@ -22,9 +22,8 @@ void main()
         A[i][1] = cur + 65 - A[i][1];//retirement year here  
     }
     Sort(A, n);
-    //Print List
     int j = 0;
-    for(int i = 0; i<n; i++)
+    for(int i = 0; i<n; i++)//Print List
     {
             pf("Retirement Year = %d. \n Employee IDs = ", A[i][1]);
             j = i;
@@ -36,20 +35,8 @@ void main()
     }
 }
 
-void print(int A[][2], int n, char name)
-{
-    pf("\n[+] Array %c[%d][%d]:\n",name , n, 2);
-    for(int i = 0; i<n; i++)
-    {
-        for(int j = 0; j<2; j++)
-            pf("%d\t", A[i][j]);
-        pf("\n");
-    }
-}
-
 void Sort(int A[][2], int n)
 {
-    print(A, n, 'A');
     int min, pos = 0, temp = 0;
     for(int i = 0; i<n; i++)//Loop to sort the Matrix based on year
     {
@@ -62,15 +49,11 @@ void Sort(int A[][2], int n)
                 pos = j;
             }
         }
-        //Swap(A, k, pos);
-        pf("Step %d\n", i);
         for(int k = 0; k<2;k++)//Loop to swap Variables
         {
             temp = A[i][k];
             A[i][k] = A[pos][k];
             A[pos][k] = temp;
         }
-        print(A, n, 'A');
-    }
-    print(A, n, 'A');    
+    }  
 } 
