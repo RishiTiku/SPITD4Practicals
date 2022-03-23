@@ -100,7 +100,7 @@ void ToUpper(char S[1000])
     int i = 0; 
     while(S[i]!='\0')
     {
-        if(S[i]<=122&&S[i]>=90)
+        if(S[i]<=122&&S[i]>=97)
             S[i] = S[i] - 32;
         i++; 
     }
