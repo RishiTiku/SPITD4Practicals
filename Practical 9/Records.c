@@ -42,20 +42,24 @@ void input(struct Member *M, int n)
         sf("%d", &M->age);
         pf("Enter Address.\n");
         sf("%s", M->address);
+        fflush(stdin);
         pf("Whether Active? (y/n)\n");
         sf("%c", &M->active);
+        fflush(stdin);
         pf("Whether Married? (y/n)\n");
         sf("%c", &M->married);
         if(M->married == 'Y'|| M->married == 'y')
         {
             pf("Enter Wife's name.\n");
             sf("%s", M->wname);
+            fflush(stdin);
             pf("Enter Number of Children.\n");
             sf("%d", &M->nc);
             for(int j = 0; j<M->nc; j++)
             {   
                 pf("Enter Child %d's name.\n",j);
                 sf("%s", M->cnames[j]);
+                fflush(stdin);
             }
         }
         M++;
@@ -67,12 +71,11 @@ void print(struct Member M)
         pf("Name: %s", M.name);
         pf("\nAge: %d", M.age);
         pf("\nAddress: %s", M.address);
-        pf("Active: %c", M.active);
+        pf("\nActive: %c", M.active);
         if(M.married == 'Y'|| M.married == 'y')
         {
-            pf("\nWife's name.\n");
-            sf("%s", M.wname);
-            pf("\nNumber of Children:\n%d", M.nc);
+            pf("\nWife's name: %s", M.wname);
+            pf("\nNumber of Children:%d", M.nc);
             for(int j = 0; j<M.nc; j++)
                 pf("\nChild %d's name: %s", M.cnames[j]);
         }
