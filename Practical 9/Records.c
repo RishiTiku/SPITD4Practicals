@@ -20,14 +20,27 @@ void print(struct Member M);
 void main()
 {
     int n;
+    int counter = 1;
     pf("Enter Number of Members. \n");
     sf("%d", &n);
     struct Member M[n];
     input(M, n);
+    pf("\n\t\tAll Members.\n");
+    for(int i =0; i<n; i++)
+    {
+        pf("%d. ", i+1);
+        print(M[i]);
+    }
+    pf("\n\t\tWives' Data.\n");
     for(int i = 0; i<n; i++)
     {
-        if(M[i].active == 'Y'||M[i].active == 'y')
-            print(M[i]);
+        if((M[i].active == 'Y'||M[i].active == 'y')&&(M[i].married == 'Y'||M[i].married == 'y'))
+        {
+            pf("%d. ", counter);
+            pf("Wife of %s = %s", M[i].name, M[i].wname);
+            pf("\n");
+            counter++;
+        }
     }
 }
 
@@ -57,7 +70,7 @@ void input(struct Member *M, int n)
             sf("%d", &M->nc);
             for(int j = 0; j<M->nc; j++)
             {   
-                pf("Enter Child %d's name.\n",j);
+                pf("Enter Child %d's name.\n",j+1);
                 sf("%s", M->cnames[j]);
                 fflush(stdin);
             }
@@ -77,7 +90,7 @@ void print(struct Member M)
             pf("\nWife's name: %s", M.wname);
             pf("\nNumber of Children:%d", M.nc);
             for(int j = 0; j<M.nc; j++)
-                pf("\nChild %d's name: %s", M.cnames[j]);
+                pf("\nChild %d's name: %s", j+1, M.cnames[j]);
         }
         pf("\n");
 }
