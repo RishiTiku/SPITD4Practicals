@@ -18,6 +18,7 @@ void reader();
 void main()
 {
     printer();
+    pf("\n\t\tRead Mode\n");
     reader();
 }
 
@@ -30,7 +31,7 @@ void printer()//Prints records to a file
         pf("Enter Registration number of vehicle.\n");
         sf("%d", &v.reg);
         fflush(stdin);
-        pf("Enter Name of Owner.\n");
+        pf("Enter Name of Owner. (Type End to stop Write Mode)\n");
         fgets(v.oname, 30, stdin);
         fflush(stdin);
         v.oname[strcspn(v.oname, "\n")] = 0;
@@ -40,7 +41,7 @@ void printer()//Prints records to a file
         pf("Enter Address of owner.\n"); 
         fgets(v.oaddress, 100, stdin);
         v.oaddress[strcspn(v.oaddress, "\n")] = 0;
-        fpf(fp1, "%d\n%s\0\n%s\0\n\n", v.reg, v.oname, v.oaddress);
+        fpf(fp1, "%d %s %s\n", v.reg, v.oname, v.oaddress);
     }
     fclose(fp1);
 }
@@ -55,16 +56,19 @@ void reader()
     pf("Enter name of owner.\n");
     fgets(name, 30, stdin);
     name[strcspn(name, "\n")] = 0;
-    while(!feof(fp1))
+    while(1)
     {
-        fsf(fp1, "%d\n%s\n%s\n\n", &v.reg, &v.oname, &v.oaddress);
+        fsf(fp1, "%d %s %s\n", &v.reg, &v.oname, &v.oaddress);
         if(strcmpi(v.oname, name)==0)
         {
             flag = 1;
             pf("Registration Number: %d\n", v.reg);
             pf("Owner's Name: %s\n", v.oname);
             pf("Address of Owner: %s\n", v.oaddress);
+            break;
         }
+        if(feof(fp1))
+            break;
     }
     if(flag == 0)
     {

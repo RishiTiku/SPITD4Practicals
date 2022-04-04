@@ -2,19 +2,15 @@
 #define pf printf
 #define sf scanf
 
-void Writer(char filename[30]);
+void Writer(char filename[30]);//Writes the file and reads the new data just entered
 
 void main()
 {
-    char ch = 'A';
-    FILE * fp1 = fopen("Sample.txt", "a");
-    fseek(fp1, 0, 2);
-    int size = ftell(fp1);
-    fclose(fp1);
-    //if(size == 0)
+    char ch = 'A';    
     Writer("Sample.txt");
-    fp1 = fopen("Sample.txt", "r");
+    FILE * fp1 = fopen("Sample.txt", "r");
     FILE * fp2 = fopen("temp.txt", "w");
+    pf("New File contains: \n");
     while(1)
     {
         fscanf(fp1, "%c", &ch);
@@ -27,7 +23,7 @@ void main()
         }
         else
             fprintf(fp2,"%c", ch);
-            pf("%c", ch);
+        pf("%c", ch);
     }
     fclose(fp1);
     fclose(fp2);
@@ -37,9 +33,22 @@ void main()
 
 void Writer(char filename[30])
 {
+    char ch;
     FILE * fp = fopen(filename, "w");
     //Type some text here to be printed into the file Sample.txt
-    fprintf(fp, "small letters: abcdefghijklmnopqrstuvwxyz. Capital Letters: ABCDE.");
+    fprintf(fp, "small letters: abcdefghijklmnopqrstuvwxyz. ");
+    fprintf(fp, "Capital Letters: ABCDEFGHIJKLMNOPQRSTUVWXYZ.");
     fprintf(fp, "\0");
+    fclose(fp);
+    fp = fopen(filename, "r");
+    pf("Old File contains: \n");
+    while(1)
+    {
+        fscanf(fp, "%c", &ch);
+        if(feof(fp))
+            break;
+        pf("%c", ch);
+    }
+    pf("\n");
     fclose(fp);
 }
