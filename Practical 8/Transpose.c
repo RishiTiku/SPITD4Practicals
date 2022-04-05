@@ -23,6 +23,9 @@ void main()
     }
     Print(A, m, n);
     PrintTranspose(A, m, n);
+    for(int i = 0; i<m; i++)
+        free(A[i]);
+    free(A);
 }
 
 
@@ -41,8 +44,8 @@ void PrintTranspose(int ** A, int m, int n)
 {
     pf("Transpose\n");
     int** Arr = (int**)malloc(m * sizeof(int*));
-    for (int i = 0; i < m; i++)
-        Arr[i] = (int*)malloc(n * sizeof(int));
+    for (int i = 0; i < n; i++)
+        Arr[i] = (int*)malloc(m * sizeof(int));
     for(int j = 0, counter = 0; j<n; j++)
     {
         for(int i = j; i < m*n; i+=n)
@@ -52,6 +55,9 @@ void PrintTranspose(int ** A, int m, int n)
         }
     }
     Print(Arr, n, m);
+    for(int i = 0; i<n; i++)
+        free(Arr[i]);
+    free(Arr);
 }
 
 
